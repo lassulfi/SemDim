@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "271847941001",
+    "firebase_url": "https://semdim-5f219.firebaseio.com",
+    "project_id": "semdim-5f219",
+    "storage_bucket": "semdim-5f219.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:271847941001:android:ca79ea0e000ebbe9",
+        "android_client_info": {
+          "package_name": "br.com.semdimapp.semdim"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "271847941001-tseh3vhvd47pcipv01pfqfc6tjnsloj7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.semdimapp.semdim",
+            "certificate_hash": "ce9088ed0b6df6b3250b6ebc17becb0eaccfbbfc"
+          }
+        },
+        {
+          "client_id": "271847941001-nsd6n5vagr61lbhdl1930i7cl3ont4b6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDaPJcaQtmPxc3TKP2leDmBfZ_NSRkCw_0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "271847941001-nsd6n5vagr61lbhdl1930i7cl3ont4b6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
