@@ -1,8 +1,13 @@
 <resources>
     <string name="app_name">SemDim</string>
-    <!-- Activity_Login strings -->
+    <!-- LoginActivity strings -->
     <string name="tb_username_hint">E-mail</string>
     <string name="tb_password_hint">Senha</string>
     <string name="btn_login_text">Logar</string>
     <string name="btn_facebook_login_hint">Login com o Facebook</string>
+    <!-- CadastroUsuarioActivity strings -->
+    <string name="tb_user_name_hint">Seu nome</string>
+    <string name="tb_cadastro_email">Seu e-mail</string>
+    <string name="tb_cadastro_senha">Sua senha</string>
+    <string name="btn_cadastrar">Cadastrar</string>
 </resources>
