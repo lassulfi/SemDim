@@ -36,4 +36,12 @@
         android:text="@string/btn_facebook_login_hint"
         />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_cadastre_se_text"
+        android:layout_gravity="center"
+        android:onClick="abrirCadastroUsuario"
+        />
+
 </LinearLayout>
