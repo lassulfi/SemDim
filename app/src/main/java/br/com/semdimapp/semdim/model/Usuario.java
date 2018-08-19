@@ -12,6 +12,10 @@ public class Usuario {
     private String senha; //senha
 
     //Construtor
+    public Usuario(){
+        //Construtor padrao para chamar DataSnapshot.getValue(Usuario.class)
+    }
+
     public Usuario( String nome, String email, String senha){
         this.id = null;
         this.nome = nome;
