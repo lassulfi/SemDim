@@ -1,13 +1,15 @@
-package br.com.semdimapp.semdim;
+package br.com.semdimapp.semdim.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class CadastroUsuarioActivity extends AppCompatActivity {
+import br.com.semdimapp.semdim.R;
+
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cadastro_usuario);
+        setContentView(R.layout.activity_main);
     }
 }

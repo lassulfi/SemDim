@@ -3,6 +3,7 @@ package br.com.semdimapp.semdim.controller;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.util.Base64;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -14,11 +15,13 @@ import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 
+import br.com.semdimapp.semdim.R;
 import br.com.semdimapp.semdim.activity.CadastroUsuarioActivity;
 import br.com.semdimapp.semdim.config.FirebaseConfig;
 import br.com.semdimapp.semdim.exceptions.UsuarioException;
 import br.com.semdimapp.semdim.helper.Base64Custom;
 import br.com.semdimapp.semdim.helper.Preferences;
+import br.com.semdimapp.semdim.helper.ToastHelper;
 import br.com.semdimapp.semdim.model.Usuario;
 
 public class UsuarioController {
@@ -26,12 +29,14 @@ public class UsuarioController {
     //Atributos
     private Usuario usuario;
     private boolean success;
-    private String firabaseExcepionMessage;
+    private String cadastroMessage;
+
+
 
     //Construtor
     public UsuarioController(){
-        this.success = false;
-        this.firabaseExcepionMessage = null;
+        success = false;
+        this.cadastroMessage = null;
     }
 
     /**
@@ -57,7 +62,7 @@ public class UsuarioController {
     /**
      * Cadastra o usuario no banco de dados do Firebase
      */
-    public void cadastrarUsuario(final Context context) throws UsuarioException{
+    public void cadastrarUsuario(final Context context, final Toast mToast) throws UsuarioException{
 
         if(usuario == null){
             success = false;
@@ -73,6 +78,10 @@ public class UsuarioController {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
+                    ToastHelper.showToast(context,
+                            mToast,
+                            context.getResources().getString(R.string.sucesso_cadastro),
+                            Toast.LENGTH_SHORT);
                     //Definicao do ID do usuario definido pelo firebase
                     FirebaseUser firebaseUser = task.getResult().getUser();
 
@@ -86,22 +95,23 @@ public class UsuarioController {
                     Preferences preferences = new Preferences(context);
                     preferences.saveUserPreferences(userIdentifier, usuario.getSenha());
 
+                    cadastroMessage = "Cadastro realizado com sucesso";
                     success = true;
                 } else {
                     try{
-                        success = false;
                         throw task.getException();
                     } catch (FirebaseAuthWeakPasswordException e){
-                        firabaseExcepionMessage = "Digite uma senha mais forte, " +
+                        cadastroMessage = "Digite uma senha mais forte, " +
                                 "contendo caracteres e números";
                     } catch (FirebaseAuthInvalidCredentialsException e){
-                        firabaseExcepionMessage = "Email inválido. Informe um e-mail válido";
+                        cadastroMessage = "Email inválido. Informe um e-mail válido";
                     } catch (FirebaseAuthUserCollisionException e){
-                        firabaseExcepionMessage = "E-mail já cadastrado.";
+                        cadastroMessage = "E-mail já cadastrado.";
                     }
                     catch (Exception e){
-                        firabaseExcepionMessage = "Erro ao efetuar cadastro.";
+                        cadastroMessage = "Erro ao efetuar cadastro.";
                     }
+
                 }
             }
         });
@@ -135,14 +145,14 @@ public class UsuarioController {
         //Instancia a referencia do banco de dados do Firebase
         DatabaseReference databaseReference = FirebaseConfig.getDatabaseReference();
         //Cria o nó do Firebase que adiciona o usuario
-        databaseReference.child("usuarios").setValue(u);
+        databaseReference.child("usuarios").child(u.getId()).setValue(u);
     }
 
     /**
      * Retorna a mensagem de erro de exceção do Firebase
      * @return
      */
-    public String getFirabaseExcepionMessage(){
-        return firabaseExcepionMessage;
+    public String getCadastroMessage(){
+        return cadastroMessage;
     }
 }

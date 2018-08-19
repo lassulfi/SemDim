@@ -10,7 +10,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tb_user_name"
+        android:id="@+id/tb_cadastro_username"
         android:hint="@string/tb_user_name_hint"/>
 
     <EditText

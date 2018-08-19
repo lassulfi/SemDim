@@ -11,4 +11,9 @@
     <string name="tb_cadastro_email">Seu e-mail</string>
     <string name="tb_cadastro_senha">Sua senha</string>
     <string name="btn_cadastrar">Cadastrar</string>
+    <string name="empty_username_password_edittext">Usuário/senha inválidos</string>
+    <string name="sucesso_cadastro">Cadastro realizado com sucesso</string>
+    <string name="falha_cadastro">Erro ao realizar o cadastro</string>
+    <!-- LoginActivity -->
+    <string name="falha_login_message">Erro ao realizar o login</string>
 </resources>

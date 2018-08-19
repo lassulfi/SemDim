@@ -34,7 +34,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cadastro_usuario);
 
         //Recupera os elementos da tela
-        usernameEditText = (EditText) findViewById(R.id.tb_cadastro_email);
+        usernameEditText = (EditText) findViewById(R.id.tb_cadastro_username);
         emailEditText = (EditText) findViewById(R.id.tb_cadastro_email);
         passwordEditText = (EditText) findViewById(R.id.tb_cadastro_password);
 
@@ -65,21 +65,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
                 cadastro.setUsuario(username, email, password);
 
                 try {
-                    cadastro.cadastrarUsuario(CadastroUsuarioActivity.this);
-
-                    if (cadastro.isSuccess()){
-                        ToastHelper.showToast(CadastroUsuarioActivity.this,
-                                mToast,
-                                getResources().getString(R.string.sucesso_cadastro),
-                                Toast.LENGTH_SHORT);
-                        //Encaminha o usuario para a tela de login
-                        abrirLoginActivity();
-                    } else {
-                        ToastHelper.showToast(CadastroUsuarioActivity.this,
-                                mToast,
-                                getResources().getString(R.string.falha_cadastro).toString(),
-                                Toast.LENGTH_SHORT);
-                    }
+                    cadastro.cadastrarUsuario(CadastroUsuarioActivity.this, mToast);
                 } catch (UsuarioException e){
                     ToastHelper.showToast(CadastroUsuarioActivity.this,
                             mToast,
@@ -91,11 +77,12 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
                             e.getMessage(),
                             Toast.LENGTH_SHORT);
                 }
-
             }
         });
 
-
+        if(cadastro.isSuccess()){
+            abrirLoginActivity();
+        }
     }
 
     public void abrirLoginActivity(){
