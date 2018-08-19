@@ -27,6 +27,14 @@ public final class FirebaseConfig {
         return databaseReference;
     }
 
+    public static DatabaseReference getDatabaseReference(String name){
+        if(databaseReference == null){
+            databaseReference = FirebaseDatabase.getInstance().getReference(name);
+        }
+
+        return databaseReference;
+    }
+
     public static FirebaseAuth getFirebaseAuth(){
 
         if(firebaseAuth == null){
