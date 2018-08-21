@@ -77,12 +77,14 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
                             e.getMessage(),
                             Toast.LENGTH_SHORT);
                 }
+
+                if(cadastro.isSuccess()){
+                    abrirLoginActivity();
+                }
             }
         });
 
-        if(cadastro.isSuccess()){
-            abrirLoginActivity();
-        }
+
     }
 
     public void abrirLoginActivity(){

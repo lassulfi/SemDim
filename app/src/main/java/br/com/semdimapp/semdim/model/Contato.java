@@ -1,30 +1,26 @@
 package br.com.semdimapp.semdim.model;
 
 /**
- * Classe usuario.
+ * Classe Contato dos usuarios do App
  */
-public class Usuario {
+public class Contato {
 
     //Atributos
-    private String id; //ID do usuario
-    private String nome; //username do usuario
-    private String email; //email
-    private String senha; //senha
-    public float valor;
+    private String id; //ID do contato
+    private String nome; //Nome do contato
+    private String email; //Email do contato
+    private float valor; //Valor que o contato pode gastar
 
     //Construtor
-    public Usuario(){
-        //Construtor padrao para chamar DataSnapshot.getValue(Usuario.class)
+    public Contato(){
+        //Construtor padrao para chamar DataSnapshot.getValue(Contato.class)
     }
 
-    public Usuario( String nome, String email, String senha){
-        this.id = null;
+    public Contato(String nome, String email){
         this.nome = nome;
         this.email = email;
-        this.senha = senha;
     }
 
-    //Getters & Setters
     public String getId() {
         return id;
     }
@@ -47,14 +43,6 @@ public class Usuario {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
     }
 
     public float getValor() {

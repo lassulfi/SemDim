@@ -16,4 +16,7 @@
     <string name="falha_cadastro">Erro ao realizar o cadastro</string>
     <!-- LoginActivity -->
     <string name="falha_login_message">Erro ao realizar o login</string>
+    <!-- menu_main.res -->
+    <string name="action_settings">Configurações</string>
+    <string name="action_sair">Sair</string>
 </resources>

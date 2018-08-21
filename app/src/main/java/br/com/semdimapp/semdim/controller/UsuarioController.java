@@ -16,7 +16,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 
 import br.com.semdimapp.semdim.R;
-import br.com.semdimapp.semdim.activity.CadastroUsuarioActivity;
 import br.com.semdimapp.semdim.config.FirebaseConfig;
 import br.com.semdimapp.semdim.exceptions.UsuarioException;
 import br.com.semdimapp.semdim.helper.Base64Custom;
