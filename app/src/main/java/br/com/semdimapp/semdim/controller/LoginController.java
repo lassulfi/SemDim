@@ -96,4 +96,11 @@ public class LoginController {
     public boolean isSuccess(){
         return success;
     }
+
+    /**
+     * Faz o logoff do aplicativo
+     */
+    public void fazerLogoff(){
+        firebaseAuth.signOut();
+    }
 }

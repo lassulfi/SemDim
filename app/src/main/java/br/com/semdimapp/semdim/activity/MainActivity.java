@@ -1,12 +1,25 @@
 package br.com.semdimapp.semdim.activity;
 
+import android.content.DialogInterface;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import br.com.semdimapp.semdim.R;
+import br.com.semdimapp.semdim.adapter.ViewPageAdapter;
+import br.com.semdimapp.semdim.controller.ContatoController;
+import br.com.semdimapp.semdim.controller.LoginController;
+import br.com.semdimapp.semdim.fragment.GruposFragment;
+import br.com.semdimapp.semdim.helper.ToastHelper;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -14,6 +27,13 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private ViewPager viewPager;
     private TabLayout tabLayout;
+    private ViewPageAdapter viewPageAdapter;
+
+    private LoginController loginController;
+
+    private ContatoController contatoController;
+
+    private Toast mToast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,16 +43,106 @@ public class MainActivity extends AppCompatActivity {
         //Recupera os elementos da tela
 
         //Configuração da toolbar
-        toolbar = (Toolbar) findViewById(R.id.toolbar_principal);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(R.string.app_name);
         setSupportActionBar(toolbar);
 
         //Configuração do viewpager
         viewPager = (ViewPager) findViewById(R.id.pager);
+        viewPageAdapter = new ViewPageAdapter(getSupportFragmentManager());
+
+        viewPageAdapter.addFragment(new GruposFragment(),
+                getResources().getString(R.string.grupos_fragment_title));
+        viewPager.setAdapter(viewPageAdapter);
 
         //Configuração do tabLayout
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
+    }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.action_add_new_contact:
+                adicionarNovoContato();
+                return true;
+            case R.id.action_add_new_group:
+                adicionarNovoGrupo();
+                return true;
+            case R.id.action_settings:
+                return true;
+            case R.id.action_sair:
+                logOffUser();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void adicionarNovoGrupo() {
+    }
+
+    /**
+     * Adiciona um novo contato
+     */
+    private void adicionarNovoContato() {
+
+        contatoController = ContatoController.getInstance(MainActivity.this);
+
+        //Configuração do Dialog
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
+        alertDialog.setTitle(R.string.main_activity_new_contact_alertdialog_title);
+        alertDialog.setMessage(R.string.main_activity_new_contact_alertdialog_message);
+
+        final EditText editText = new EditText(MainActivity.this);
+        alertDialog.setView(editText);
+
+        alertDialog.setPositiveButton(R.string.main_activity_cadastrar_button,
+                new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String emailContato = editText.getText().toString();
+                if(emailContato.isEmpty()){
+                    ToastHelper.showToast(MainActivity.this,
+                            mToast,
+                            getResources()
+                                    .getString(R.string.main_activity_new_contact_empty_edittext),
+                            Toast.LENGTH_SHORT);
+                } else {
+                    if(contatoController.adicionarContato(emailContato)){
+                        ToastHelper.showToast(MainActivity.this,
+                                mToast,
+                                getResources()
+                                        .getString(R.string.main_activity_new_contact_success),
+                                Toast.LENGTH_SHORT);
+                    } else {
+                        ToastHelper.showToast(MainActivity.this,
+                                mToast,
+                                getResources()
+                                        .getString(R.string.main_activity_new_contact_fail),
+                                Toast.LENGTH_SHORT);
+                    };
+                }
+            }
+        });
+
+    }
+
+    /**
+     * Faz o logoff da aplicação
+     */
+    private void logOffUser() {
+        if (loginController == null){
+            loginController = new LoginController();
+        }
+        loginController.fazerLogoff();
     }
 }
