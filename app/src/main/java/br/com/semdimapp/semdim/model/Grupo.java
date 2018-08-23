@@ -8,6 +8,9 @@ import java.util.ArrayList;
 public class Grupo {
 
     //Atributos
+    private String nome;
+    private float valor = 0.0f;
+
     private Usuario criador; //Usuario que criou o grupo
     private ArrayList<Contato> contatos; //ArrayList de Contatos
 
@@ -23,6 +26,7 @@ public class Grupo {
     public Grupo(Usuario criador){
         this.criador = criador;
         contatos = new ArrayList<>();
+        valor += criador.getValor();
     }
 
     /**
@@ -31,6 +35,8 @@ public class Grupo {
      */
     public void addContato(Contato contato){
         contatos.add(contato);
+        //Contabiliza o valor do contato ao grupo
+        valor += contato.getValor();
     }
 
     /**
@@ -39,5 +45,13 @@ public class Grupo {
      */
     public ArrayList<Contato> getContatos() {
         return contatos;
+    }
+
+    public void setNome(String nome){
+        this.nome = nome;
+    }
+
+    public String getNome(){
+        return nome;
     }
 }

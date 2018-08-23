@@ -12,4 +12,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/group_name_edittext"
         android:hint="@string/nome_grupo_edittext_hint"/>
+
+
+
 </LinearLayout>

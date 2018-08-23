@@ -18,13 +18,15 @@
         android:layout_height="wrap_content"
         android:id="@+id/tb_cadastro_email"
         android:hint="@string/tb_cadastro_email"
+        android:inputType="textEmailAddress"
         />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/tb_cadastro_password"
-        android:hint="@string/tb_cadastro_senha"/>
+        android:hint="@string/tb_cadastro_senha"
+        android:inputType="textPassword"/>
 
     <Button
         android:layout_width="match_parent"

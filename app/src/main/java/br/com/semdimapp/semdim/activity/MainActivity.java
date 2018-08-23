@@ -1,12 +1,14 @@
 package br.com.semdimapp.semdim.activity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -18,6 +20,7 @@ import br.com.semdimapp.semdim.R;
 import br.com.semdimapp.semdim.adapter.ViewPageAdapter;
 import br.com.semdimapp.semdim.controller.ContatoController;
 import br.com.semdimapp.semdim.controller.LoginController;
+import br.com.semdimapp.semdim.fragment.ContatoFragment;
 import br.com.semdimapp.semdim.fragment.GruposFragment;
 import br.com.semdimapp.semdim.helper.ToastHelper;
 
@@ -53,6 +56,8 @@ public class MainActivity extends AppCompatActivity {
 
         viewPageAdapter.addFragment(new GruposFragment(),
                 getResources().getString(R.string.grupos_fragment_title));
+        viewPageAdapter.addFragment(new ContatoFragment(),
+                getResources().getString(R.string.contato_fragment_title));
         viewPager.setAdapter(viewPageAdapter);
 
         //Configuração do tabLayout
@@ -88,6 +93,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void adicionarNovoGrupo() {
+        Intent intent = new Intent(MainActivity.this, CadastroGrupoActivity.class);
+        startActivity(intent);
     }
 
     /**
@@ -103,6 +110,8 @@ public class MainActivity extends AppCompatActivity {
         alertDialog.setMessage(R.string.main_activity_new_contact_alertdialog_message);
 
         final EditText editText = new EditText(MainActivity.this);
+        editText.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS|
+                InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
         alertDialog.setView(editText);
 
         alertDialog.setPositiveButton(R.string.main_activity_cadastrar_button,
@@ -134,6 +143,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        alertDialog.setNegativeButton(R.string.btn_cancelar, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                return;
+            }
+        });
+
+        alertDialog.create();
+        alertDialog.show();
     }
 
     /**
