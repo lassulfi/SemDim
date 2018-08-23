@@ -1,6 +1,7 @@
 package br.com.semdimapp.semdim.controller;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -106,11 +107,20 @@ public class ContatoController {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
+                //Log de erro
+                Log.w("database:onCancelled", databaseError.getMessage());
             }
         });
 
         return result;
+    }
+
+    public void adicionarContato(Contato contato){
+        contatos.add(contato);
+    }
+
+    public void apagarTodos(){
+        contatos.clear();
     }
 
     /**
