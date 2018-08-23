@@ -18,7 +18,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.CadastroUsuarioActivity" />
-        <activity android:name=".activity.CadastroGrupoActivity"></activity>
+        <activity android:name=".activity.CadastroGrupoActivity"
+            android:parentActivityName=".activity.MainActivity"/>
     </application>
 
 </manifest>

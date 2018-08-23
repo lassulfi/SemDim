@@ -11,6 +11,7 @@
     <string name="tb_cadastro_email">Seu e-mail</string>
     <string name="tb_cadastro_senha">Sua senha</string>
     <string name="btn_cadastrar">Cadastrar</string>
+    <string name="btn_cancelar">Cancelar</string>
     <string name="empty_username_password_edittext">Usuário/senha inválidos</string>
     <string name="sucesso_cadastro">Cadastro realizado com sucesso</string>
     <string name="falha_cadastro">Erro ao realizar o cadastro</string>
@@ -24,9 +25,14 @@
     <!-- lista_grupos.xml -->
     <string name="nome_grupo_tv">Nome do Grupo</string>
     <string name="valor_grupo_tv">R$ 0.00</string>
+    <!-- lista_contatos.xml -->
+    <string name="nome_contato_tv">Nome do contato</string>
+    <string name="valor_contato_tv">Eu tenho R$ 0.00</string>
     <!-- Fragments -->
     <string name="grupos_fragment_title">Grupos</string>
     <string name="grupos_empty_listview">Nenhum grupo encontrado</string>
+    <string name="contato_fragment_title">Contatos</string>
+    <string name="contato_empty_listview">Nenhum contato encontrado</string>
     <!-- MainActivity -->
     <string name="main_activity_new_contact_alertdialog_title">Novo contato</string>
     <string name="main_activity_new_contact_alertdialog_message">Email do contato:</string>
