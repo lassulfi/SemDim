@@ -32,6 +32,10 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        loginController = new LoginController();
+
+        verificarUsuarioLogado();
+
         //Recupera os elementos da tela
         emailEditText = (EditText) findViewById(R.id.tb_username);
         passwordEditText = (EditText) findViewById(R.id.tb_password);
@@ -47,7 +51,7 @@ public class LoginActivity extends AppCompatActivity {
                 String password = emailEditText.getText().toString();
 
                 //Valida se o usuario passou alguma informação
-                if(email.length() == 0 || password.length() == 0){
+                if (email.length() == 0 || password.length() == 0) {
                     ToastHelper.showToast(LoginActivity.this,
                             mToast,
                             getResources().getString(R.string.empty_username_password_edittext).toString(),
@@ -55,34 +59,33 @@ public class LoginActivity extends AppCompatActivity {
                     return;
                 }
 
-                //Instancia da classe LoginController
-                loginController = new LoginController();
-
-                //Verifica se o usuario já está logado
-                if(loginController.verificarUsuarioLogado()){
+                //Realiza o processo de login
+                loginController.logarUsuario(email, password, LoginActivity.this);
+                //Se o login ocorreu com sucesso, abre a tela principal
+                if (loginController.isSuccess()) {
                     abrirTelaPrincipal();
-                } else{
-                    //Realiza o processo de login
-                    loginController.logarUsuario(email, password, LoginActivity.this);
-                    //Se o login ocorreu com sucesso, abre a tela principal
-                    if(loginController.isSuccess()){
-                        abrirTelaPrincipal();
-                    } else{
-                        ToastHelper.showToast(LoginActivity.this,
-                                mToast,
-                                getResources().getString(R.string.falha_login_message).toString(),
-                                Toast.LENGTH_SHORT);
-                    }
+                } else {
+                    ToastHelper.showToast(LoginActivity.this,
+                            mToast,
+                            getResources().getString(R.string.falha_login_message).toString(),
+                            Toast.LENGTH_SHORT);
                 }
             }
         });
     }
 
+    private void verificarUsuarioLogado() {
+        if (loginController.verificarUsuarioLogado()) {
+            abrirTelaPrincipal();
+        }
+    }
+
     /**
      * Abre a tela de cadastro de usuario
+     *
      * @param view
      */
-    public void abrirCadastroUsuario(View view){
+    public void abrirCadastroUsuario(View view) {
 
         Intent intent = new Intent(LoginActivity.this, CadastroUsuarioActivity.class);
 
@@ -92,7 +95,7 @@ public class LoginActivity extends AppCompatActivity {
     /**
      * Abre a MainActivity
      */
-    public void abrirTelaPrincipal(){
+    public void abrirTelaPrincipal() {
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
         startActivity(intent);
         finish();
