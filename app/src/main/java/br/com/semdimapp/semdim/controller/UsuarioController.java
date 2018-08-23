@@ -3,6 +3,7 @@ package br.com.semdimapp.semdim.controller;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.util.Base64;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -13,7 +14,10 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 
 import br.com.semdimapp.semdim.R;
 import br.com.semdimapp.semdim.config.FirebaseConfig;
@@ -30,7 +34,8 @@ public class UsuarioController {
     private boolean success;
     private String cadastroMessage;
 
-
+    private FirebaseAuth auth;
+    private DatabaseReference databaseReference;
 
     //Construtor
     public UsuarioController(){
@@ -69,7 +74,7 @@ public class UsuarioController {
         }
 
         //Recupera a instancia de autenticacao do Firebase
-        FirebaseAuth auth = FirebaseConfig.getFirebaseAuth();
+        auth = FirebaseConfig.getFirebaseAuth();
 
         //Cadastro do usuario no firebase
         auth.createUserWithEmailAndPassword(usuario.getEmail(), usuario.getSenha())
@@ -137,12 +142,37 @@ public class UsuarioController {
     }
 
     /**
+     * Retorna o usuario logado no app
+     * @return usuario que está logado no App
+     */
+    public Usuario getUsuarioLogado(Context context){
+
+        Preferences preferences = new Preferences(context);
+
+        final String idUsuarioLogado = preferences.getUsuarioID();
+
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                usuario = dataSnapshot.child(idUsuarioLogado).getValue(Usuario.class);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.w("database:onCancelled", databaseError.getMessage());
+            }
+        });
+
+        return usuario;
+    }
+
+    /**
      * Adiciona o usuario ao banco de dados
      * @param u Objeto Usuario
      */
     public void saveUserToDatabase(Usuario u){
         //Instancia a referencia do banco de dados do Firebase
-        DatabaseReference databaseReference = FirebaseConfig.getDatabaseReference();
+        databaseReference = FirebaseConfig.getDatabaseReference();
         //Cria o nó do Firebase que adiciona o usuario
         databaseReference.child("usuarios").child(u.getId()).setValue(u);
     }
