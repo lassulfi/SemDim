@@ -20,6 +20,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
 import br.com.semdimapp.semdim.R;
+import br.com.semdimapp.semdim.activity.MainActivity;
 import br.com.semdimapp.semdim.config.FirebaseConfig;
 import br.com.semdimapp.semdim.exceptions.UsuarioException;
 import br.com.semdimapp.semdim.helper.Base64Custom;
@@ -30,6 +31,9 @@ import br.com.semdimapp.semdim.model.Usuario;
 public class UsuarioController {
 
     //Atributos
+
+    private static final String DATABASEERROR_ONCANCELLED = "database:onCancelled";
+
     private Usuario usuario;
     private boolean success;
     private String cadastroMessage;
@@ -37,10 +41,20 @@ public class UsuarioController {
     private FirebaseAuth auth;
     private DatabaseReference databaseReference;
 
+    private static UsuarioController instance = null;
+
     //Construtor
-    public UsuarioController(){
+    private UsuarioController(){
         success = false;
         this.cadastroMessage = null;
+    }
+
+    public static UsuarioController getInstance() {
+        if(instance == null){
+            instance = new UsuarioController();
+        }
+
+        return instance;
     }
 
     /**
@@ -95,10 +109,6 @@ public class UsuarioController {
 
                     saveUserToDatabase(usuario);
 
-                    //Salva o nome de usuario e senha nas preferencias para fazer o login
-                    Preferences preferences = new Preferences(context);
-                    preferences.saveUserPreferences(userIdentifier, usuario.getSenha());
-
                     cadastroMessage = "Cadastro realizado com sucesso";
                     success = true;
                 } else {
@@ -145,25 +155,36 @@ public class UsuarioController {
      * Retorna o usuario logado no app
      * @return usuario que está logado no App
      */
-    public Usuario getUsuarioLogado(Context context){
+    public void encontrarUsuarioLogado(Context context){
+
+        usuario = null;
 
         Preferences preferences = new Preferences(context);
 
         final String idUsuarioLogado = preferences.getUsuarioID();
 
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+        //Recupera a instancia do DatabaseReference
+        databaseReference = FirebaseConfig.getDatabaseReference()
+                .child("usuarios")
+                .child(idUsuarioLogado);
+
+        ValueEventListener eventListener = new ValueEventListener() {
+
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                usuario = dataSnapshot.child(idUsuarioLogado).getValue(Usuario.class);
+                if(dataSnapshot.getValue() != null){
+                    usuario = dataSnapshot.getValue(Usuario.class);
+                }
+
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Log.w("database:onCancelled", databaseError.getMessage());
+                Log.w(DATABASEERROR_ONCANCELLED, databaseError.getMessage());
             }
-        });
+        };
 
-        return usuario;
+        databaseReference.addListenerForSingleValueEvent(eventListener);
     }
 
     /**

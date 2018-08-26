@@ -59,7 +59,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
                 }
 
                 //Intancia da classe cadastro
-                cadastro = new UsuarioController();
+                cadastro = UsuarioController.getInstance();
 
                 //Criacao da instacia de usuario
                 cadastro.setUsuario(username, email, password);
