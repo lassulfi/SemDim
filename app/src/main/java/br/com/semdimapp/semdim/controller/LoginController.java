@@ -47,7 +47,7 @@ public class LoginController {
         this.firebaseAuth = FirebaseConfig.getFirebaseAuth();
         this.success = false;
 
-        this.usuarioController = new UsuarioController();
+        this.usuarioController = UsuarioController.getInstance();
     }
 
     public boolean verificarUsuarioLogado(Context context){
