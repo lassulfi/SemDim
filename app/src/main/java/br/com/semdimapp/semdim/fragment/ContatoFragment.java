@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -30,6 +31,7 @@ import br.com.semdimapp.semdim.model.Contato;
  */
 public class ContatoFragment extends Fragment {
 
+    //Atributos
     private ArrayList<Contato> contatos;
     private ContatoController contatoController;
 
@@ -39,6 +41,8 @@ public class ContatoFragment extends Fragment {
 
     private DatabaseReference databaseReference;
     private ValueEventListener valueEventListener;
+
+    private ProgressBar progressBar;
 
     public ContatoFragment() {
         // Required empty public constructor
@@ -55,6 +59,9 @@ public class ContatoFragment extends Fragment {
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_contato, container, false);
+
+        //Recupera a progressbar
+        progressBar = (ProgressBar) view.findViewById(R.id.progress_bar);
 
         //Recupera a listView
         listView = (ListView) view.findViewById(R.id.contatos_listview);
@@ -74,18 +81,25 @@ public class ContatoFragment extends Fragment {
 
         //Listener para recuperar os dados
         valueEventListener = new ValueEventListener() {
+
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 //Apaga todos os contatos
                 contatoController.apagarTodos();
                 contatos.clear();
+
+                progressBar.setVisibility(View.VISIBLE);
+
                 for (DataSnapshot data : dataSnapshot.getChildren()) {
+
                     Contato contato = data.getValue(Contato.class);
                     contatoController.adicionarContato(contato);
                 }
 
                 contatos = contatoController.getContatos();
 
+                progressBar.setVisibility(View.INVISIBLE);
+                
                 adapter.notifyDataSetChanged();
             }
 
@@ -93,6 +107,7 @@ public class ContatoFragment extends Fragment {
             public void onCancelled(DatabaseError databaseError) {
                 Log.w("database:databaseError", databaseError.getMessage());
             }
+
         };
 
         return view;
