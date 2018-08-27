@@ -19,6 +19,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 import br.com.semdimapp.semdim.R;
 import br.com.semdimapp.semdim.activity.MainActivity;
 import br.com.semdimapp.semdim.config.FirebaseConfig;
@@ -41,12 +43,15 @@ public class UsuarioController {
     private FirebaseAuth auth;
     private DatabaseReference databaseReference;
 
+    private ArrayList<Usuario> usuarios;
+
     private static UsuarioController instance = null;
 
     //Construtor
     private UsuarioController(){
         success = false;
         this.cadastroMessage = null;
+        this.usuarios = new ArrayList<>();
     }
 
     public static UsuarioController getInstance() {
@@ -148,7 +153,11 @@ public class UsuarioController {
      * @return objeto Usuario
      */
     public Usuario getUsuario() {
-        return usuario;
+        if(usuarios.size() > 0){
+            return usuarios.get(0);
+        } else {
+            return usuario;
+        }
     }
 
     /**
@@ -157,34 +166,31 @@ public class UsuarioController {
      */
     public void encontrarUsuarioLogado(Context context){
 
-        usuario = null;
+        usuarios.clear();
 
         Preferences preferences = new Preferences(context);
-
         final String idUsuarioLogado = preferences.getUsuarioID();
 
         //Recupera a instancia do DatabaseReference
         databaseReference = FirebaseConfig.getDatabaseReference()
-                .child("usuarios")
-                .child(idUsuarioLogado);
+                .child("usuarios");
 
-        ValueEventListener eventListener = new ValueEventListener() {
-
+        databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if(dataSnapshot.getValue() != null){
-                    usuario = dataSnapshot.getValue(Usuario.class);
+                for(DataSnapshot data : dataSnapshot.getChildren()){
+                    Usuario usuario = data.getValue(Usuario.class);
+                    if(idUsuarioLogado.equals(Base64Custom.encodeBase64(usuario.getEmail()))){
+                        usuarios.add(usuario);
+                    }
                 }
-
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 Log.w(DATABASEERROR_ONCANCELLED, databaseError.getMessage());
             }
-        };
-
-        databaseReference.addListenerForSingleValueEvent(eventListener);
+        });
     }
 
     /**

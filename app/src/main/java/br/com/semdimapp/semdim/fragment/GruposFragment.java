@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 import br.com.semdimapp.semdim.R;
 import br.com.semdimapp.semdim.model.Grupo;
+import br.com.semdimapp.semdim.model.Usuario;
 
 /**
  * A simple {@link Fragment} subclass.

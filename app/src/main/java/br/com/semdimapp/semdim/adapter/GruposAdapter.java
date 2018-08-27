@@ -49,7 +49,7 @@ public class GruposAdapter extends ArrayAdapter<Grupo>{
             valorGrupoTextView.setText(String.valueOf(grupo.getValor()));
 
         }
-        
+
         return view;
     }
 }

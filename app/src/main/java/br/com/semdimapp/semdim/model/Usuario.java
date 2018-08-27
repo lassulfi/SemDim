@@ -64,4 +64,10 @@ public class Usuario {
     public void setValor(float valor) {
         this.valor = valor;
     }
+
+    @Override
+    public String toString() {
+        return "Usuario: nome: "
+                + nome + ", email: " + email;
+    }
 }

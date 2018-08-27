@@ -6,6 +6,7 @@ import android.util.Log;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -23,6 +24,8 @@ import br.com.semdimapp.semdim.model.Usuario;
 public class ContatoController {
 
     //Atributos
+    private static final String DATABASEERROR = "database:onCancelled";
+
     private Contato contato;
     private ArrayList<Contato> contatos;
 
@@ -31,6 +34,8 @@ public class ContatoController {
     private static ContatoController instance = null;
 
     private DatabaseReference databaseReference;
+
+    private ValueEventListener contatoValueEventListener;
 
     private boolean result;
 
@@ -128,6 +133,40 @@ public class ContatoController {
      * @return ArrayList de contatos
      */
     public ArrayList<Contato> getContatos() {
+        //Se os contatos já estão cadastrados retorna a lista
+        if(contatos != null){
+            return contatos;
+        }
+
+        //Caso a lista seja criada pela primeira vez, retorna a lista de contatos a partir do
+        //baco de dados
+        //Recupera o usuario logado
+        UsuarioController uController = UsuarioController.getInstance();
+        uController.encontrarUsuarioLogado(context);
+        Usuario usuario = uController.getUsuario();
+        String usuarioId = usuario.getId();
+
+        //Recupera a instancia do firebase
+        databaseReference = FirebaseConfig.getDatabaseReference().child("contatos").child(usuarioId);
+
+        ValueEventListener valueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot data: dataSnapshot.getChildren()){
+                    Contato contato = data.getValue(Contato.class);
+
+                    contatos.add(contato);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.w(DATABASEERROR, databaseError.getMessage());
+            }
+        };
+
+        databaseReference.addValueEventListener(valueEventListener);
+
         return contatos;
     }
 }

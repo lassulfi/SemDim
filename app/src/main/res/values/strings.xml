@@ -17,11 +17,13 @@
     <string name="falha_cadastro">Erro ao realizar o cadastro</string>
     <!-- LoginActivity -->
     <string name="falha_login_message">Erro ao realizar o login</string>
-    <!-- menu_main.res -->
+    <!-- menu_main.xml -->
     <string name="action_settings">Configurações</string>
     <string name="action_sair">Sair</string>
     <string name="action_add_new_contact">Adicionar novo contato</string>
     <string name="action_add_new_group">Adicionar novo grupo</string>
+    <!-- menu_cadastrar_grupo.xml -->
+    <string name="action_cadastrar_grupo">Cadastrar</string>
     <!-- lista_grupos.xml -->
     <string name="nome_grupo_tv">Nome do Grupo</string>
     <string name="valor_grupo_tv">R$ 0.00</string>
@@ -41,8 +43,12 @@
     <string name="main_activity_new_contact_success">Contato adicionado</string>
     <string name="main_activity_new_contact_fail">Contato não encontrado</string>
     <!--CadastroGrupoActivity -->
+    <string name="cadastrogrupoactivity_title">Cadastrar Grupo</string>
     <string name="nome_grupo_edittext_hint">Nome do grupo</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="contatos_grupo_textview">Contatos cadastrados</string>
+    <string name="criar_grupos_button">Criar</string>
+    <string name="nome_grupo_invalido">Nome do grupo inválido</string>
+    <string name="nenhum_contato_selecionado">Nenhum contato selecionado</string>
+    <string name="cadastrar_grupo_sucesso">Grupo criado com sucesso</string>
+    <string name="cadastrar_grupo_falha">Falha ao criar grupo</string>
 </resources>

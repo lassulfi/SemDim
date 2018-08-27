@@ -162,5 +162,9 @@ public class MainActivity extends AppCompatActivity {
             loginController = new LoginController();
         }
         loginController.fazerLogoff();
+        //Retorna a tela de login
+        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

@@ -34,13 +34,16 @@ public class GrupoController {
 
     private Context context;
 
+    private boolean sucess;
+
 
     private static GrupoController instance = null;
 
     //Construtor
     private GrupoController(Context context){
         this.context = context;
-        this.usuarioController = new UsuarioController();
+        this.usuarioController = UsuarioController.getInstance();
+        this.sucess = false;
         contatoController = ContatoController.getInstance(context);
     }
 
@@ -60,7 +63,8 @@ public class GrupoController {
     public void criarGrupo(String nome, ArrayList<Contato> contatos,Context context){
 
         //Recupera o usuario criador do grupo
-        Usuario criador = usuarioController.getUsuarioLogado(context);
+        usuarioController.encontrarUsuarioLogado(context);
+        Usuario criador = usuarioController.getUsuario();
 
         //Cria uma instancia da classe Grupo
         grupo = new Grupo(criador);
@@ -74,7 +78,7 @@ public class GrupoController {
 
         //Adiciona ao banco de dados
         String idUsuarioLogado = criador.getId();
-        final String idGrupo = Base64Custom.encodeBase64(nome);
+        final String idGrupo = idUsuarioLogado + "_" + nome;
 
         databaseReference = FirebaseConfig.getDatabaseReference()
                 .child("grupos")
@@ -86,10 +90,14 @@ public class GrupoController {
                 if(dataSnapshot.getValue() != null){
                     databaseReference.child(idGrupo).setValue(grupo);
                 }
+
+                sucess = true;
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
+
+                sucess = false;
                 Log.w("database:databaseError", databaseError.getMessage());
             }
         });
@@ -99,5 +107,7 @@ public class GrupoController {
         return grupos;
     }
 
-
+    public boolean isSucess(){
+        return sucess;
+    }
 }

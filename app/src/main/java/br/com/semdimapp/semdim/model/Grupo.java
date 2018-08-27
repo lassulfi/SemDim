@@ -54,4 +54,8 @@ public class Grupo {
     public String getNome(){
         return nome;
     }
+
+    public float getValor(){
+        return valor;
+    }
 }
