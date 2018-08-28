@@ -68,8 +68,16 @@ public class ContatoController {
      */
     public boolean adicionarContato(String email){
 
+        //Valida se o email informado não é o mesmo email do contato cadastrado
+        Preferences preferences = new Preferences(context);
+        String idUsuarioLogado = preferences.getUsuarioID();
+
         //Converte o e-mail para base 64
         final String idContato = Base64Custom.encodeBase64(email);
+
+        if(idUsuarioLogado.equals(idContato)){
+            return false;
+        }
 
         //Recupera a instancia do Firebase onde será realizada a pesquisa
         databaseReference = FirebaseConfig.getDatabaseReference().child("usuarios")
