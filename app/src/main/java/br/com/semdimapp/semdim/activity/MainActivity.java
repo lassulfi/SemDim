@@ -21,6 +21,7 @@ import br.com.semdimapp.semdim.adapter.ViewPageAdapter;
 import br.com.semdimapp.semdim.controller.ContatoController;
 import br.com.semdimapp.semdim.controller.LoginController;
 import br.com.semdimapp.semdim.fragment.ContatoFragment;
+import br.com.semdimapp.semdim.fragment.EstabelecimentosFragment;
 import br.com.semdimapp.semdim.fragment.GruposFragment;
 import br.com.semdimapp.semdim.helper.ToastHelper;
 
@@ -58,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
                 getResources().getString(R.string.grupos_fragment_title));
         viewPageAdapter.addFragment(new ContatoFragment(),
                 getResources().getString(R.string.contato_fragment_title));
+        viewPageAdapter.addFragment(new EstabelecimentosFragment(),
+                getString(R.string.estabelecimento_fragment_title));
         viewPager.setAdapter(viewPageAdapter);
 
         //Configuração do tabLayout
