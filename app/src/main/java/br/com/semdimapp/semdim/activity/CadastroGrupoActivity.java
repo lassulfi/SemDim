@@ -57,11 +57,10 @@ public class CadastroGrupoActivity extends AppCompatActivity {
     private ArrayAdapter adapter;
 
     private DatabaseReference usuarioDatabaseReference;
-
-    private DatabaseReference databaseReference;
-    private ValueEventListener valueEventListener;
-
     private ValueEventListener usuarioEventListener;
+
+    private DatabaseReference grupoDatabaseReference;
+    private ValueEventListener grupoValueEventListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,7 +115,7 @@ public class CadastroGrupoActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 //Recupera o nome do grupo
-                String nomeDoGrupo = criarGrupoButton.getText().toString();
+                String nomeDoGrupo = nomeGrupoTextView.getText().toString();
 
                 //Se nao for inforado o nome do grupo, exibe um
                 if(nomeDoGrupo.isEmpty()){
@@ -139,20 +138,25 @@ public class CadastroGrupoActivity extends AppCompatActivity {
                 //Cadastra um novo grupo no banco de dados
                 grupoController = GrupoController.getInstance(CadastroGrupoActivity.this);
                 grupoController.criarGrupo(nomeDoGrupo,
-                        contatosSelecionados,
-                        CadastroGrupoActivity.this);
+                        contatosSelecionados);
+
+                //Recupera a DatabaseReference do Grupo
+                grupoDatabaseReference = grupoController.getGruposDatabaseReference();
+
+                //Recupera o ValueEventListener do Grupo
+                grupoValueEventListener = grupoController.getGrupoEventListener();
+
+                grupoDatabaseReference.addListenerForSingleValueEvent(grupoValueEventListener);
 
                 if(grupoController.isSucess()){
-                    ToastHelper.showToast(CadastroGrupoActivity.
-                            this,
+                    ToastHelper.showToast(CadastroGrupoActivity.this,
                             mToast,
                             getResources().getString(R.string.cadastrar_grupo_sucesso),
                             Toast.LENGTH_SHORT);
                     //Finaliza a Activity
                     finish();
                 } else {
-                    ToastHelper.showToast(CadastroGrupoActivity.
-                                    this,
+                    ToastHelper.showToast(CadastroGrupoActivity.this,
                             mToast,
                             getResources().getString(R.string.cadastrar_grupo_falha),
                             Toast.LENGTH_SHORT);
@@ -171,6 +175,7 @@ public class CadastroGrupoActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         usuarioDatabaseReference.removeEventListener(usuarioEventListener);
+        grupoDatabaseReference.removeEventListener(grupoValueEventListener);
     }
 
     /**
