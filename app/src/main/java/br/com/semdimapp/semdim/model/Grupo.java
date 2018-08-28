@@ -9,6 +9,7 @@ public class Grupo {
 
     //Atributos
     private String nome;
+    private String id;
     private float valor = 0.0f;
 
     private Usuario criador; //Usuario que criou o grupo
@@ -49,6 +50,18 @@ public class Grupo {
 
     public void setNome(String nome){
         this.nome = nome;
+    }
+
+    public Usuario getCriador(){
+        return criador;
+    }
+
+    public void setId(String id){
+        this.id = id;
+    }
+
+    public String getId(){
+        return  id;
     }
 
     public String getNome(){

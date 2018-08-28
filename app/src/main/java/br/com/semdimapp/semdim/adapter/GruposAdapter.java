@@ -27,6 +27,8 @@ public class GruposAdapter extends ArrayAdapter<Grupo>{
      */
     public GruposAdapter(Context context, ArrayList<Grupo> objects) {
         super(context, 0, objects);
+        this.context = context;
+        this.grupos = objects;
     }
 
     @Override

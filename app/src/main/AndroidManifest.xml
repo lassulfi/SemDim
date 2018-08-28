@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="br.com.semdimapp.semdim">
-    
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -19,9 +19,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.CadastroUsuarioActivity" />
-        <activity android:name=".activity.CadastroGrupoActivity"
+        <activity android:name=".activity.CadastroUsuarioActivity"
             android:parentActivityName=".activity.MainActivity"/>
+        <activity
+            android:name=".activity.CadastroGrupoActivity"
+            android:parentActivityName=".activity.MainActivity" />
+        <activity android:name=".activity.ConversaGrupo" />
+        <activity android:name=".activity.ConversaIndividual" />
+        <activity android:name=".activity.EstabelecimentoActivity"></activity>
     </application>
 
 </manifest>
