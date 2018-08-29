@@ -6,4 +6,54 @@
     android:layout_height="match_parent"
     tools:context=".activity.EstabelecimentoActivity">
 
+    <TextView
+        android:id="@+id/nome_estabelecimento_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="@+id/estabelecimento_imageView"
+        app:layout_constraintTop_toTopOf="@+id/estabelecimento_imageView" />
+
+    <ImageView
+        android:id="@+id/estabelecimento_imageView"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@color/listViewDivider" />
+
+    <TextView
+        android:id="@+id/endereco_estabelecimento_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="@+id/estabelecimento_imageView"
+        app:layout_constraintStart_toStartOf="@+id/estabelecimento_imageView" />
+
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/mapView"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/estabelecimento_imageView" />
+
+    <ListView
+        android:id="@+id/promocoes_listview"
+        android:layout_width="344dp"
+        android:layout_height="251dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mapView" />
+
+
 </android.support.constraint.ConstraintLayout>

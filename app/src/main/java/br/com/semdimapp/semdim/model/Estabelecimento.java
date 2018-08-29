@@ -1,9 +1,12 @@
 package br.com.semdimapp.semdim.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Estabelecimento {
+public class Estabelecimento implements Parcelable {
 
     //Atributos
     private String id;
@@ -16,6 +19,17 @@ public class Estabelecimento {
     private ArrayList<Promocao> promocoes;
 
     public Estabelecimento(){
+    }
+
+    public Estabelecimento(Parcel parcel){
+        this.id = parcel.readString();
+        this.nome = parcel.readString();
+        this.email = parcel.readString();
+        this.endereco = parcel.readString();
+        this.latitude = parcel.readDouble();
+        this.longitude = parcel.readDouble();
+
+        this.promocoes = parcel.readArrayList(null);
     }
 
     /**
@@ -119,4 +133,32 @@ public class Estabelecimento {
     public float obterMenorValor(){
         return promocoes.get(0).getValor();
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.id);
+        dest.writeString(this.email);
+        dest.writeString(this.endereco);
+        dest.writeString(this.nome);
+        dest.writeDouble(this.latitude);
+        dest.writeDouble(this.longitude);
+        dest.writeList(promocoes);
+    }
+
+    public static Creator<Estabelecimento> CREATOR = new Creator<Estabelecimento>() {
+        @Override
+        public Estabelecimento createFromParcel(Parcel source) {
+            return new Estabelecimento(source);
+        }
+
+        @Override
+        public Estabelecimento[] newArray(int size) {
+            return new Estabelecimento[size];
+        }
+    };
 }

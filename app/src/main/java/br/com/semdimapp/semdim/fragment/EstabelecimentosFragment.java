@@ -30,7 +30,6 @@ import br.com.semdimapp.semdim.model.Estabelecimento;
  * A simple {@link Fragment} subclass.
  */
 
-//TODO: codificar o fragment de estabelecimentos
 public class EstabelecimentosFragment extends Fragment {
 
     //Atributos
