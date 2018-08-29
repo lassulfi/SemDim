@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:id="@+id/promocao_imageview"
+        android:src="@mipmap/ic_launcher"/>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="2"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/nome_promocao_textview"
+            android:text="@string/nome_promocao_textiview"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/descricao_promocao_textview"
+            android:text="@string/descricao_promocao_textview"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/valor_promocao_textview"
+            android:text="@string/preco_promocao_textview"/>
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_comprar"
+        android:text="@string/btn_comprar"/>
+
+</LinearLayout>
