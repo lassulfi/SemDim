@@ -32,13 +32,15 @@
     <string name="valor_contato_tv">Eu tenho R$ 0.00</string>
     <!-- lista_estabelecimentos.xml -->
     <string name="nome_estabelecimento_tv">Nome do estabelecimento</string>
+    <string name="valor_promocao_textview">Promoções a partir de R$ 30.00</string>
+    <string name="valor_promocao_vazio_textview">Promoções a partir de R$ </string>
     <!-- Fragments -->
     <string name="grupos_fragment_title">Grupos</string>
     <string name="grupos_empty_listview">Nenhum grupo encontrado</string>
     <string name="contato_fragment_title">Contatos</string>
     <string name="contato_empty_listview">Nenhum contato encontrado</string>
     <string name="estabelecimento_fragment_title">Estabelecimentos</string>
-    <string name="estabelecimento_empty_listview"></string>
+    <string name="estabelecimento_empty_listview">Nenhum estabelecimento cadastrado</string>
     <!-- MainActivity -->
     <string name="main_activity_new_contact_alertdialog_title">Novo contato</string>
     <string name="main_activity_new_contact_alertdialog_message">Email do contato:</string>

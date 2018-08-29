@@ -12,6 +12,10 @@ public class Promocao implements Comparable<Promocao> {
     private String descricao;
     private float valor;
 
+    public Promocao(){
+        //Construtor padrao para chamar DataSnapshot.getValue(Promocao.class)
+    }
+
     /**
      * Construtor da classe promocao
      * @param nome

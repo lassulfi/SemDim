@@ -11,10 +11,24 @@
         android:id="@+id/contato_imageview"
         android:src="@mipmap/ic_launcher" />
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/nome_estabelecimento_textview"
-        android:text="@string/nome_estabelecimento_tv"/>
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/nome_estabelecimento_textview"
+            android:text="@string/nome_estabelecimento_tv"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/valor_promocao_textview"
+            android:text="@string/valor_promocao_textview"/>
+    </LinearLayout>
+
+
 
 </LinearLayout>
