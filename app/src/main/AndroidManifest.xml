@@ -9,27 +9,37 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity android:name=".activity.MainActivity" />
         <activity android:name=".activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="@string/fb_login_protocol_scheme" />
+
             </intent-filter>
         </activity>
         <activity android:name=".activity.CadastroUsuarioActivity"
-            android:parentActivityName=".activity.MainActivity"/>
+            android:parentActivityName=".activity.LoginActivity"/>
         <activity
             android:name=".activity.CadastroGrupoActivity"
             android:parentActivityName=".activity.MainActivity" />
-        <activity android:name=".activity.ConversaGrupo" />
-        <activity android:name=".activity.ConversaIndividual" />
+        <activity android:name=".activity.ConversaGrupoActivity" />
+        <activity android:name=".activity.ConversaIndividualActivity" />
         <activity android:name=".activity.EstabelecimentoActivity"
             android:parentActivityName=".activity.MainActivity"/>
         <!-- Google Maps API Key -->
         <meta-data android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDaPJcaQtmPxc3TKP2leDmBfZ_NSRkCw_0"/>
+
+        <!-- Facebook Login API -->
+        <meta-data android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id"/>
     </application>
 
 </manifest>

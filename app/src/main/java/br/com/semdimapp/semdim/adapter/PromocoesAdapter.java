@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -59,7 +60,7 @@ public class PromocoesAdapter extends ArrayAdapter<Promocao>{
             TextView nomePromocao = (TextView) view.findViewById(R.id.nome_promocao_textview);
             TextView descricaoPromocao = (TextView) view.findViewById(R.id.descricao_promocao_textview);
             TextView valorPromocao = (TextView) view.findViewById(R.id.valor_promocao_textview);
-            Button comprar = (Button) view.findViewById(R.id.btn_comprar);
+            ImageButton comprar = (ImageButton) view.findViewById(R.id.btn_comprar);
 
             Promocao promocao = promocoes.get(position);
 

@@ -2,6 +2,7 @@ package br.com.semdimapp.semdim.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -30,6 +31,7 @@ public class EstabelecimentoActivity extends AppCompatActivity implements OnMapR
     private TextView enderecoEstabelecimentoTextView;
     private ImageView estabelecimentoImageView;
     private ListView promocoesListView;
+    private Toolbar toolbar;
 
     private GoogleMap mMap;
 
@@ -50,6 +52,10 @@ public class EstabelecimentoActivity extends AppCompatActivity implements OnMapR
         if(extra != null){
             estabelecimento = (Estabelecimento) extra.getParcelable(ESTABELECIMENTO_INTENT);
         }
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar_estabelecimento);
+        toolbar.setTitle(R.string.estabelecimento_activity_title);
+        setSupportActionBar(toolbar);
 
         //Recupera os elementos de tela
         nomeEstabecimentoTextView = (TextView) findViewById(R.id.nome_estabelecimento_textview);
@@ -86,6 +92,6 @@ public class EstabelecimentoActivity extends AppCompatActivity implements OnMapR
                 .position(localizacao).title(estabelecimento.getNome()));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(localizacao));
         mMap.animateCamera(CameraUpdateFactory.zoomIn());
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(20), 2000, null);
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(15), 2000, null);
     }
 }

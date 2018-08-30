@@ -5,7 +5,7 @@
     <string name="tb_password_hint">Senha</string>
     <string name="btn_login_text">Logar</string>
     <string name="btn_facebook_login_hint">Login com o Facebook</string>
-    <string name="tv_cadastre_se_text">Cadastre-se</string>
+    <string name="tv_cadastre_se_text">Ainda não possui conta? Clique aqui e cadastre-se!</string>
     <!-- CadastroUsuarioActivity strings -->
     <string name="tb_user_name_hint">Seu nome</string>
     <string name="tb_cadastro_email">Seu e-mail</string>
@@ -58,6 +58,7 @@
     <string name="cadastrar_grupo_sucesso">Grupo criado com sucesso</string>
     <string name="cadastrar_grupo_falha">Falha ao criar grupo</string>
     <!-- Estabelecimento Activity -->
+   <string name="estabelecimento_activity_title">Estabelecimento</string>
     <string name="nome_estabelecimento_textview">Nome do estabelecimento</string>
     <string name="endereco_estabelecimento_textvew">Endereço do estabelecimento</string>
     <string name="nome_promocao_textiview">Nome da promoção</string>
@@ -66,4 +67,10 @@
     <string name="btn_comprar">Comprar</string>
     <string name="compra_efetuada_sucesso">Oba! Compra efetuada com sucesso!</string>
     <string name="simbolo_moeda">R$ </string>
+
+    <!-- Facebook API Login -->
+    <string name="facebook_app_id">309144506557358</string>
+    <string name="fb_login_protocol_scheme">fb309144506557358</string>
+
+
 </resources>

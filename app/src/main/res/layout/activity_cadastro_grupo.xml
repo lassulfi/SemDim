@@ -13,28 +13,33 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="4dp">
 
         <EditText
             android:layout_width="0dp"
             android:layout_weight="2"
             android:layout_height="wrap_content"
             android:id="@+id/group_name_edittext"
-            android:hint="@string/nome_grupo_edittext_hint"/>
+            android:hint="@string/nome_grupo_edittext_hint"
+            style="@style/EditTextPadrao"/>
 
         <Button
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:id="@+id/grupos_criar_button"
-            android:text="@string/criar_grupos_button"/>
+            android:text="@string/criar_grupos_button"
+            style="@style/botaoPadrao"
+            android:background="@drawable/login_button"/>
     </LinearLayout>
     
 
 
     <TextView android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/contatos_grupo_textview"/>
+        android:text="@string/contatos_grupo_textview"
+        android:padding="8dp"/>
 
     <ListView
         android:id="@+id/grupos_contatos_listview"
@@ -46,6 +51,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/contatos_empty_view"
-        android:text="@string/contato_empty_listview"/>
+        android:text="@string/contato_empty_listview"
+        android:textColor="@color/primaryTextColor"/>
 
 </LinearLayout>

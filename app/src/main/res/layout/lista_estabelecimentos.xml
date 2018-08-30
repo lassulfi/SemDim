@@ -3,24 +3,29 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp">
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/contato_imageview"
-        android:src="@mipmap/ic_launcher" />
+        android:src="@drawable/ic_store_mall_directory_black_24dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginLeft="8dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/nome_estabelecimento_textview"
-            android:text="@string/nome_estabelecimento_tv"/>
+            android:text="@string/nome_estabelecimento_tv"
+            android:textSize="18dp"
+            android:layout_marginBottom="4dp"/>
 
         <TextView
             android:layout_width="match_parent"

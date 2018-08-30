@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal">
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="4dp">
 
     <ImageView
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="wrap_content"
         android:id="@+id/promocao_imageview"
-        android:src="@mipmap/ic_launcher"/>
+        android:src="@drawable/ic_restaurant_black_48dp"/>
 
     <LinearLayout
         android:layout_width="0dp"
@@ -21,28 +22,35 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/nome_promocao_textview"
+            android:textSize="16dp"
+            android:layout_marginBottom="2dp"
             android:text="@string/nome_promocao_textiview"
             />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:textSize="12dp"
+            android:layout_marginBottom="2dp"
             android:id="@+id/descricao_promocao_textview"
             android:text="@string/descricao_promocao_textview"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:textSize="14dp"
             android:id="@+id/valor_promocao_textview"
             android:text="@string/preco_promocao_textview"/>
 
     </LinearLayout>
 
-    <Button
-        android:layout_width="0dp"
-        android:layout_weight="1"
+    <ImageButton
+        android:layout_gravity="center|center_vertical"
+        android:layout_width="wrap_content"
+        android:layout_weight="0"
         android:layout_height="wrap_content"
         android:id="@+id/btn_comprar"
-        android:text="@string/btn_comprar"/>
+        android:background="@drawable/round_button"
+        android:src="@drawable/ic_attach_money_black_32dp"/>
 
 </LinearLayout>

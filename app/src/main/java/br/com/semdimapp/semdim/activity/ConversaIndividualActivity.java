@@ -5,7 +5,7 @@ import android.os.Bundle;
 import br.com.semdimapp.semdim.R;
 
 //TODO: codificar o chat individual
-public class ConversaIndividual extends AppCompatActivity {
+public class ConversaIndividualActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

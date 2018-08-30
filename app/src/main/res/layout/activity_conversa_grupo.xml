@@ -1,9 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.ConversaGrupo">
+    tools:context=".activity.ConversaGrupoActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <include android:id="@+id/toolbar_conversa_grupo"
+        layout="@layout/toolbar"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/mensagem_grupo_linearlayout"
+        android:orientation="horizontal"
+        android:background="@android:color/white"
+        android:layout_alignParentBottom="true">
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Mesangem"
+            android:textColor="@android:color/black"
+            android:textColorHint="@android:color/black"
+            android:id="@+id/mensagem_edittext"
+            android:layout_weight="1"/>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/enviar_imagebutton"
+            android:src="@drawable/ic_send_white"
+            android:theme="@style/botaoPadrao"/>
+
+    </LinearLayout>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:id="@+id/conversa_listview"
+        android:layout_below="@+id/toolbar_conversa_grupo"
+        android:layout_above="@id/mensagem_grupo_linearlayout"/>
+
+</RelativeLayout>

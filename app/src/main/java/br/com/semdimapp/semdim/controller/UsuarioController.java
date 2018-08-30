@@ -115,7 +115,6 @@ public class UsuarioController {
                     saveUserToDatabase(usuario);
 
                     cadastroMessage = "Cadastro realizado com sucesso";
-                    success = true;
                 } else {
                     try{
                         throw task.getException();
@@ -202,6 +201,7 @@ public class UsuarioController {
         databaseReference = FirebaseConfig.getDatabaseReference();
         //Cria o nó do Firebase que adiciona o usuario
         databaseReference.child("usuarios").child(u.getId()).setValue(u);
+        success = true;
     }
 
     /**

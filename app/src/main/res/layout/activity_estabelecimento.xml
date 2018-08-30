@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.EstabelecimentoActivity">
+
+    <include android:id="@+id/toolbar_estabelecimento"
+        android:layout="@layout/toolbar"/>
 
     <TextView
         android:id="@+id/nome_estabelecimento_textview"
@@ -13,9 +16,10 @@
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:textSize="20dp"
         android:text="@string/nome_estabelecimento_tv"
-        app:layout_constraintStart_toStartOf="@+id/estabelecimento_imageView"
-        app:layout_constraintTop_toTopOf="@+id/estabelecimento_imageView" />
+        android:layout_below="@+id/toolbar_estabelecimento"
+        android:layout_alignParentLeft="true"/>
 
     <ImageView
         android:id="@+id/estabelecimento_imageView"
@@ -24,7 +28,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@color/listViewDivider" />
+        app:srcCompat="@color/listViewDivider"
+        android:layout_below="@+id/toolbar_estabelecimento"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"/>
 
     <TextView
         android:id="@+id/endereco_estabelecimento_textview"
@@ -34,8 +41,8 @@
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
         android:text="@string/endereco_estabelecimento_textvew"
-        app:layout_constraintBottom_toBottomOf="@+id/estabelecimento_imageView"
-        app:layout_constraintStart_toStartOf="@+id/estabelecimento_imageView" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignBottom="@+id/estabelecimento_imageView"/>
 
     <fragment
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -43,18 +50,18 @@
         android:id="@+id/mapView"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/estabelecimento_imageView" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/estabelecimento_imageView"/>
 
     <ListView
         android:id="@+id/promocoes_listview"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mapView" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/mapView"/>
 
 
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>

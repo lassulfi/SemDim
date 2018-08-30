@@ -3,24 +3,29 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp">
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/contato_imageview"
-        android:src="@mipmap/ic_launcher" />
+        android:src="@drawable/ic_person_black_24dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
         android:orientation="vertical">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/nome_contato_textview"
-            android:text="@string/nome_contato_tv"/>
+            android:textSize="18dp"
+            android:text="@string/nome_contato_tv"
+            android:paddingBottom="4dp"/>
 
         <TextView
             android:layout_width="match_parent"

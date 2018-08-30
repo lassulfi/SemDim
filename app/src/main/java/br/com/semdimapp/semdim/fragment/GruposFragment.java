@@ -1,12 +1,14 @@
 package br.com.semdimapp.semdim.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -19,12 +21,13 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 import br.com.semdimapp.semdim.R;
+import br.com.semdimapp.semdim.activity.ConversaGrupoActivity;
 import br.com.semdimapp.semdim.adapter.GruposAdapter;
 import br.com.semdimapp.semdim.config.FirebaseConfig;
 import br.com.semdimapp.semdim.controller.GrupoController;
 import br.com.semdimapp.semdim.helper.Preferences;
+import br.com.semdimapp.semdim.model.Contato;
 import br.com.semdimapp.semdim.model.Grupo;
-import br.com.semdimapp.semdim.model.Usuario;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -98,6 +101,36 @@ public class GruposFragment extends Fragment {
                 Log.w(DATABASEERROR, databaseError.getMessage());
             }
         };
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Intent intent = new Intent(getActivity(), ConversaGrupoActivity.class);
+
+                Grupo grupo = grupos.get(position);
+
+                //Cria dois vetores, um com os membros do grupo e outro com email de cada grupo
+                ArrayList<Contato> contatos = grupo.getContatos();
+                String[] idContatos = new String[contatos.size()];
+                String[] nomeContatos = new String[contatos.size()];
+
+                for(int i = 0; i < contatos.size(); i++){
+                    idContatos[i] = contatos.get(i).getId();
+                    nomeContatos[i] = contatos.get(i).getNome();
+                }
+
+                intent.putExtra("NOME_DO_GRUPO", grupo.getNome());
+                intent.putExtra("ID_DO_GRUPO", grupo.getId());
+                intent.putExtra("CRIADOR_GRUPO", grupo.getCriador().getNome());
+                intent.putExtra("ID_CRIADOR", grupo.getCriador().getId());
+                intent.putExtra("ID_CONTATOS", idContatos);
+                intent.putExtra("NOMES_CONTATOS", nomeContatos);
+
+                startActivity(intent);
+
+            }
+        });
 
         return view;
     }
