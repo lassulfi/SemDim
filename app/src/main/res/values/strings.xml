@@ -57,5 +57,13 @@
     <string name="nenhum_contato_selecionado">Nenhum contato selecionado</string>
     <string name="cadastrar_grupo_sucesso">Grupo criado com sucesso</string>
     <string name="cadastrar_grupo_falha">Falha ao criar grupo</string>
-
+    <!-- Estabelecimento Activity -->
+    <string name="nome_estabelecimento_textview">Nome do estabelecimento</string>
+    <string name="endereco_estabelecimento_textvew">Endereço do estabelecimento</string>
+    <string name="nome_promocao_textiview">Nome da promoção</string>
+    <string name="descricao_promocao_textview">Descricao da promoção</string>
+    <string name="preco_promocao_textview">Preço: R$ 100.00s</string>
+    <string name="btn_comprar">Comprar</string>
+    <string name="compra_efetuada_sucesso">Oba! Compra efetuada com sucesso!</string>
+    <string name="simbolo_moeda">R$ </string>
 </resources>

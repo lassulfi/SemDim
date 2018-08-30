@@ -8,7 +8,6 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activity.MainActivity" />
@@ -26,7 +25,11 @@
             android:parentActivityName=".activity.MainActivity" />
         <activity android:name=".activity.ConversaGrupo" />
         <activity android:name=".activity.ConversaIndividual" />
-        <activity android:name=".activity.EstabelecimentoActivity"></activity>
+        <activity android:name=".activity.EstabelecimentoActivity"
+            android:parentActivityName=".activity.MainActivity"/>
+        <!-- Google Maps API Key -->
+        <meta-data android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDaPJcaQtmPxc3TKP2leDmBfZ_NSRkCw_0"/>
     </application>
 
 </manifest>

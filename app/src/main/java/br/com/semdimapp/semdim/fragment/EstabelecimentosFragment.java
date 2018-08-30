@@ -1,12 +1,14 @@
 package br.com.semdimapp.semdim.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -21,6 +23,7 @@ import java.util.ArrayList;
 import java.util.FormatFlagsConversionMismatchException;
 
 import br.com.semdimapp.semdim.R;
+import br.com.semdimapp.semdim.activity.EstabelecimentoActivity;
 import br.com.semdimapp.semdim.adapter.EstabelecimentoAdapter;
 import br.com.semdimapp.semdim.config.FirebaseConfig;
 import br.com.semdimapp.semdim.controller.EstabelecimentoController;
@@ -34,6 +37,7 @@ public class EstabelecimentosFragment extends Fragment {
 
     //Atributos
     private final static String DATABASE_ERROR = "database:Error";
+    private final static String ESTABELECIMENTO_INTENT = "estabelecimento";
 
     private ArrayList<Estabelecimento> estabelecimentos;
     private EstabelecimentoController estabelecimentoController;
@@ -97,6 +101,23 @@ public class EstabelecimentosFragment extends Fragment {
                 Log.w(DATABASE_ERROR, databaseError.getMessage());
             }
         };
+
+        //Definicao do evento de clique na listview
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                //Cria a intent para visualizar o estabelecimento
+                Intent intent = new Intent(getActivity(), EstabelecimentoActivity.class);
+
+                //Recupera o estabecimento a ser exibido
+                Estabelecimento estabelecimento = estabelecimentos.get(position);
+
+                intent.putExtra(ESTABELECIMENTO_INTENT, estabelecimento);
+
+                startActivity(intent);
+            }
+        });
 
         return view;
     }

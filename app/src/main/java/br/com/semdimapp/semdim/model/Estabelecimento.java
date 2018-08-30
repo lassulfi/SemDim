@@ -21,6 +21,17 @@ public class Estabelecimento implements Parcelable {
     public Estabelecimento(){
     }
 
+    public Estabelecimento(String id, String nome, String email, String endereco,
+                           double latitude, double longitude, ArrayList<Promocao> promocoes){
+        this.id = id;
+        this.nome = nome;
+        this.email = email;
+        this.endereco = endereco;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.promocoes = promocoes;
+    }
+
     public Estabelecimento(Parcel parcel){
         this.id = parcel.readString();
         this.nome = parcel.readString();
@@ -29,7 +40,11 @@ public class Estabelecimento implements Parcelable {
         this.latitude = parcel.readDouble();
         this.longitude = parcel.readDouble();
 
-        this.promocoes = parcel.readArrayList(null);
+        if(this.promocoes == null){
+            promocoes = new ArrayList<>();
+        }
+
+        parcel.readTypedList(promocoes, Promocao.CREATOR);
     }
 
     /**
@@ -147,10 +162,10 @@ public class Estabelecimento implements Parcelable {
         dest.writeString(this.nome);
         dest.writeDouble(this.latitude);
         dest.writeDouble(this.longitude);
-        dest.writeList(promocoes);
+        dest.writeTypedList(this.promocoes);
     }
 
-    public static Creator<Estabelecimento> CREATOR = new Creator<Estabelecimento>() {
+    public static final Creator<Estabelecimento> CREATOR = new Creator<Estabelecimento>() {
         @Override
         public Estabelecimento createFromParcel(Parcel source) {
             return new Estabelecimento(source);
