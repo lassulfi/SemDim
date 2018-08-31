@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
     tools:context=".activity.EstabelecimentoActivity">
 
     <include android:id="@+id/toolbar_estabelecimento"
@@ -18,6 +19,7 @@
         android:layout_marginTop="8dp"
         android:textSize="20dp"
         android:text="@string/nome_estabelecimento_tv"
+        android:textColor="@android:color/black"
         android:layout_below="@+id/toolbar_estabelecimento"
         android:layout_alignParentLeft="true"/>
 
@@ -30,7 +32,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_below="@+id/toolbar_estabelecimento"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"/>
+        android:layout_alignParentRight="true" />
 
     <TextView
         android:id="@+id/endereco_estabelecimento_textview"
@@ -40,6 +42,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
         android:text="@string/endereco_estabelecimento_textvew"
+        android:textColor="@android:color/black"
         android:layout_alignParentLeft="true"
         android:layout_alignBottom="@+id/estabelecimento_imageView"/>
 

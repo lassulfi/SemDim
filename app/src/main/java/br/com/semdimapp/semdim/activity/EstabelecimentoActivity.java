@@ -54,7 +54,7 @@ public class EstabelecimentoActivity extends AppCompatActivity implements OnMapR
         }
 
         toolbar = (Toolbar) findViewById(R.id.toolbar_estabelecimento);
-        toolbar.setTitle(R.string.estabelecimento_activity_title);
+        toolbar.setTitle(estabelecimento.getNome());
         setSupportActionBar(toolbar);
 
         //Recupera os elementos de tela
@@ -70,6 +70,8 @@ public class EstabelecimentoActivity extends AppCompatActivity implements OnMapR
         } else if(estabelecimento.getNome().equals("City Bar")){
             estabelecimentoImageView.setImageResource(R.drawable.citybar);
         }
+
+        estabelecimentoImageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
         //Recupera o map
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()

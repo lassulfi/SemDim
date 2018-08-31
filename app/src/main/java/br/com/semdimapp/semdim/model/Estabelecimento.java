@@ -157,9 +157,9 @@ public class Estabelecimento implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.id);
+        dest.writeString(this.nome);
         dest.writeString(this.email);
         dest.writeString(this.endereco);
-        dest.writeString(this.nome);
         dest.writeDouble(this.latitude);
         dest.writeDouble(this.longitude);
         dest.writeTypedList(this.promocoes);

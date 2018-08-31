@@ -20,19 +20,29 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.Signature;
 
 import br.com.semdimapp.semdim.R;
 import br.com.semdimapp.semdim.adapter.ViewPageAdapter;
+import br.com.semdimapp.semdim.config.FirebaseConfig;
 import br.com.semdimapp.semdim.controller.ContatoController;
 import br.com.semdimapp.semdim.controller.LoginController;
+import br.com.semdimapp.semdim.controller.UsuarioController;
 import br.com.semdimapp.semdim.fragment.ContatoFragment;
 import br.com.semdimapp.semdim.fragment.EstabelecimentosFragment;
 import br.com.semdimapp.semdim.fragment.GruposFragment;
 import br.com.semdimapp.semdim.helper.Base64Custom;
+import br.com.semdimapp.semdim.helper.Preferences;
 import br.com.semdimapp.semdim.helper.ToastHelper;
+import br.com.semdimapp.semdim.model.Usuario;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -45,6 +55,10 @@ public class MainActivity extends AppCompatActivity {
     private LoginController loginController;
 
     private ContatoController contatoController;
+
+    private DatabaseReference databaseReference;
+
+    private ValueEventListener valueEventListener;
 
     private Toast mToast;
 
@@ -107,6 +121,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
+            case R.id.action_editar_valor:
+                editarMeuValor();
+                return true;
             case R.id.action_add_new_contact:
                 adicionarNovoContato();
                 return true;
@@ -121,6 +138,71 @@ public class MainActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void editarMeuValor() {
+
+        final AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
+        alertDialog.setTitle("Eu posso gastar...");
+        alertDialog.setMessage("Informe o quanto você pode gastar:");
+
+        final EditText editText = new EditText(MainActivity.this);
+        editText.setInputType(InputType.TYPE_CLASS_NUMBER| InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
+        alertDialog.setView(editText);
+
+        alertDialog.setPositiveButton("ALTERAR", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                //Recupera o id do usuario logado
+                Preferences preferences = new Preferences(MainActivity.this);
+                String mUserId = preferences.getUsuarioID();
+
+                double mUserValue = Double.valueOf(editText.getText().toString());
+
+                if(mUserValue == 0 || mUserValue < 0){
+                    ToastHelper.showToast(MainActivity.this, mToast,
+                            "Valor inválido", Toast.LENGTH_SHORT);
+                    return;
+                }
+
+                databaseReference = FirebaseConfig.getDatabaseReference()
+                        .child("usuarios").child(mUserId);
+                //Atualiza o valor informado
+                databaseReference.child("valor").setValue(mUserValue);
+
+                valueEventListener = new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        //Recupera a classe do usuario e atualiza o objeto no controller
+
+                        if(dataSnapshot.getValue() != null){
+                            Usuario usuario = dataSnapshot.getValue(Usuario.class);
+
+                            UsuarioController usuarioController = UsuarioController.getInstance();
+                            usuarioController.setUsuario(usuario);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                };
+
+                //Atualiza os valores no grupo do usuario
+
+            }
+        });
+
+        alertDialog.setNegativeButton("CANCELAR", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        alertDialog.show();
     }
 
     private void adicionarNovoGrupo() {
