@@ -63,6 +63,14 @@ public class EstabelecimentoActivity extends AppCompatActivity implements OnMapR
         estabelecimentoImageView = (ImageView) findViewById(R.id.estabelecimento_imageView);
         promocoesListView = (ListView) findViewById(R.id.promocoes_listview);
 
+        if(estabelecimento.getNome().equals("Gordão lanches")){
+            estabelecimentoImageView.setImageResource(R.drawable.gordao_lanches);
+        } else if(estabelecimento.getNome().equals("Pizzaria Oliva")){
+            estabelecimentoImageView.setImageResource(R.drawable.pizzaria_oliva);
+        } else if(estabelecimento.getNome().equals("City Bar")){
+            estabelecimentoImageView.setImageResource(R.drawable.citybar);
+        }
+
         //Recupera o map
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.mapView);

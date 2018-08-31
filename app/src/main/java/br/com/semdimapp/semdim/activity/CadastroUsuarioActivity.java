@@ -1,6 +1,7 @@
 package br.com.semdimapp.semdim.activity;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -8,10 +9,21 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
+
 import br.com.semdimapp.semdim.R;
+import br.com.semdimapp.semdim.config.FirebaseConfig;
 import br.com.semdimapp.semdim.controller.UsuarioController;
 import br.com.semdimapp.semdim.exceptions.UsuarioException;
+import br.com.semdimapp.semdim.helper.Base64Custom;
 import br.com.semdimapp.semdim.helper.ToastHelper;
+import br.com.semdimapp.semdim.model.Usuario;
 
 public class CadastroUsuarioActivity extends AppCompatActivity {
 
@@ -25,6 +37,11 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
     private Toast mToast;
 
     private String username, email, password;
+
+    private FirebaseAuth mAuth;
+    private DatabaseReference mDatabaseReference;
+
+    private ValueEventListener mValueEventListener;
 
     private UsuarioController cadastro;
 
@@ -64,23 +81,32 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
                 //Criacao da instacia de usuario
                 cadastro.setUsuario(username, email, password);
 
-                try {
-                    cadastro.cadastrarUsuario(CadastroUsuarioActivity.this, mToast);
-                } catch (UsuarioException e){
-                    ToastHelper.showToast(CadastroUsuarioActivity.this,
-                            mToast,
-                            e.getMessage(),
-                            Toast.LENGTH_SHORT);
-                } catch (Exception e){
-                    ToastHelper.showToast(CadastroUsuarioActivity.this,
-                            mToast,
-                            e.getMessage(),
-                            Toast.LENGTH_SHORT);
-                }
+                mAuth = FirebaseConfig.getFirebaseAuth();
 
-                if(cadastro.isSuccess()){
-                    abrirLoginActivity();
-                }
+                mAuth.createUserWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()){
+                            FirebaseUser mUser = task.getResult().getUser();
+
+                            String mUserId = Base64Custom.encodeBase64(mUser.getEmail());
+
+                            Usuario usuario = cadastro.getUsuario();
+                            usuario.setId(mUserId);
+
+                            cadastro.saveUserToDatabase(usuario);
+
+                            ToastHelper.showToast(CadastroUsuarioActivity.this, mToast,
+                                    "Cadastro relizado com sucesso",Toast.LENGTH_SHORT);
+
+                            abrirLoginActivity();
+                        } else {
+                            ToastHelper.showToast(CadastroUsuarioActivity.this, mToast,
+                                    "Erro ao realizar o cadastro",Toast.LENGTH_SHORT);
+                        }
+                    }
+                });
             }
         });
 

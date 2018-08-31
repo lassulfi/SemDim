@@ -7,7 +7,7 @@
     tools:context=".activity.EstabelecimentoActivity">
 
     <include android:id="@+id/toolbar_estabelecimento"
-        android:layout="@layout/toolbar"/>
+        layout="@layout/toolbar"/>
 
     <TextView
         android:id="@+id/nome_estabelecimento_textview"
@@ -28,7 +28,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@color/listViewDivider"
         android:layout_below="@+id/toolbar_estabelecimento"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"/>
@@ -49,7 +48,7 @@
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:id="@+id/mapView"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="200dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/estabelecimento_imageView"/>

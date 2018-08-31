@@ -2,6 +2,8 @@ package br.com.semdimapp.semdim.activity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
@@ -9,12 +11,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
+import android.util.Base64;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.Signature;
 
 import br.com.semdimapp.semdim.R;
 import br.com.semdimapp.semdim.adapter.ViewPageAdapter;
@@ -23,6 +31,7 @@ import br.com.semdimapp.semdim.controller.LoginController;
 import br.com.semdimapp.semdim.fragment.ContatoFragment;
 import br.com.semdimapp.semdim.fragment.EstabelecimentosFragment;
 import br.com.semdimapp.semdim.fragment.GruposFragment;
+import br.com.semdimapp.semdim.helper.Base64Custom;
 import br.com.semdimapp.semdim.helper.ToastHelper;
 
 public class MainActivity extends AppCompatActivity {
@@ -42,6 +51,25 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //Recupera a chave de hash
+        /*
+        try {
+            PackageInfo info = getPackageManager()
+                    .getPackageInfo("br.com.semdimapp.semdim",
+                            PackageManager.GET_SIGNATURES);
+            for (android.content.pm.Signature singnature : info.signatures){
+                MessageDigest md = MessageDigest.getInstance("SHA");
+                md.update(singnature.toByteArray());
+                Log.d("KEYHASH", Base64.encodeToString(md.digest(), Base64.DEFAULT));
+            }
+        } catch (PackageManager.NameNotFoundException e){
+
+        } catch (NoSuchAlgorithmException e){
+
+        }
+        */
+
         setContentView(R.layout.activity_main);
 
         //Recupera os elementos da tela
