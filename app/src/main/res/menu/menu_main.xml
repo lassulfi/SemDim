@@ -4,24 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".activity.MainActivity">
 
+    <item android:id="@+id/action_editar_valor"
+        android:title="Posso gastar..."
+        android:orderInCategory="100"
+        app:showAsAction="never"/>
+
     <item android:id="@+id/action_add_new_contact"
         android:title="@string/action_add_new_contact"
-        android:orderInCategory="100"
+        android:orderInCategory="200"
         app:showAsAction="never"/>
 
     <item android:id="@+id/action_add_new_group"
         android:title="@string/action_add_new_group"
-        android:orderInCategory="200"
+        android:orderInCategory="300"
         app:showAsAction="never"/>
 
     <item android:id="@+id/action_settings"
         android:title="@string/action_settings"
-        android:orderInCategory="300"
+        android:orderInCategory="400"
         app:showAsAction="never"/>
 
     <item android:id="@+id/action_sair"
         android:title="@string/action_sair"
-        android:orderInCategory="400"
+        android:orderInCategory="500"
         app:showAsAction="never"/>
 
 </menu>

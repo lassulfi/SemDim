@@ -25,12 +25,14 @@
             android:id="@+id/nome_estabelecimento_textview"
             android:text="@string/nome_estabelecimento_tv"
             android:textSize="18dp"
+            android:textColor="@android:color/black"
             android:layout_marginBottom="4dp"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/valor_promocao_textview"
+            android:textColor="@android:color/black"
             android:text="@string/valor_promocao_textview"/>
     </LinearLayout>
 

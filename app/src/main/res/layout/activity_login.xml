@@ -1,72 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.LoginActivity"
-    android:orientation="vertical"
-    android:gravity="center|center_vertical"
-    android:background="@color/colorPrimaryLight">
+    android:gravity="center|center_vertical">
 
-    <TextView
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="$Dim APP"
+        android:layout_height="match_parent"
+        android:src="@drawable/amigos_side_login"
+        android:scaleType="centerCrop"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:gravity="center"
-        android:textSize="30dp"
-        android:textColor="@color/primaryTextColor"
-        android:layout_marginBottom="20dp" />
+        android:orientation="vertical">
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tb_username"
-        android:hint="@string/tb_username_hint"
-        android:inputType="textEmailAddress"
-        android:layout_marginBottom="8dp"
-        style="@style/EditTextPadrao"
-        />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="$Dim APP"
+            android:gravity="center"
+            android:textSize="30dp"
+            android:textColor="@android:color/white"
+            android:layout_marginBottom="20dp" />
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tb_password"
-        android:hint="@string/tb_password_hint"
-        android:inputType="textPassword"
-        android:layout_marginBottom="8dp"
-        style="@style/EditTextPadrao"
-        />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tb_username"
+            android:hint="@string/tb_username_hint"
+            android:inputType="textEmailAddress"
+            android:layout_marginBottom="8dp"
+            style="@style/EditTextPadrao"
+            />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_login"
-        android:text="@string/btn_login_text"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/login_button"
-        style="@style/botaoPadrao"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tb_password"
+            android:hint="@string/tb_password_hint"
+            android:inputType="textPassword"
+            android:layout_marginBottom="8dp"
+            style="@style/EditTextPadrao"
+            />
 
-    <com.facebook.login.widget.LoginButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_facebook_login"
-        android:text="@string/btn_facebook_login_hint"
-        android:layout_marginBottom="8dp"
-        android:padding="8dp"
-        android:gravity="center_horizontal"
-        android:drawableLeft="@drawable/com_facebook_button_icon_white"
-        android:background="@color/com_facebook_blue"
-        />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_login"
+            android:text="@string/btn_login_text"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/login_button"
+            style="@style/botaoPadrao"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/tv_cadastre_se_text"
-        android:layout_gravity="center"
-        android:onClick="abrirCadastroUsuario"
-        android:textSize="14dp"
-        android:gravity="center"
-        android:textColor="@color/colorPrimaryDark"/>
+        <com.facebook.login.widget.LoginButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_facebook_login"
+            android:text="@string/btn_facebook_login_hint"
+            android:layout_marginBottom="8dp"
+            android:padding="8dp"
+            android:gravity="center_horizontal"
+            android:drawableLeft="@drawable/com_facebook_button_icon_white"
+            android:background="@color/com_facebook_blue"
+            />
 
-</LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_cadastre_se_text"
+            android:layout_gravity="center"
+            android:onClick="abrirCadastroUsuario"
+            android:textSize="14dp"
+            android:gravity="center"
+            android:textColor="@android:color/white"/>
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

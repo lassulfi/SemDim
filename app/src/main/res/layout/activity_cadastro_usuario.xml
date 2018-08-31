@@ -1,49 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.CadastroUsuarioActivity"
-    android:orientation="vertical"
-    android:background="@color/colorPrimaryLight">
+    tools:context=".activity.CadastroUsuarioActivity">
 
-    <EditText
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tb_cadastro_username"
-        android:hint="@string/tb_user_name_hint"
-        android:layout_marginTop="40dp"
-        style="@style/EditTextPadrao"/>
+        android:layout_height="match_parent"
+        android:src="@drawable/amigos_side_cadastro"
+        android:scaleType="centerCrop"/>
 
-    <EditText
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tb_cadastro_email"
-        android:hint="@string/tb_cadastro_email"
-        android:inputType="textEmailAddress"
-        android:layout_marginTop="12dp"
-        style="@style/EditTextPadrao"
-        />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_gravity="center">
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tb_cadastro_password"
-        android:hint="@string/tb_cadastro_senha"
-        android:inputType="textPassword"
-        android:layout_marginTop="12dp"
-        style="@style/EditTextPadrao"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tb_cadastro_username"
+            android:hint="@string/tb_user_name_hint"
+            android:layout_marginTop="40dp"
+            style="@style/EditTextPadrao"/>
 
-    <Button
-        android:layout_gravity="center_horizontal|bottom"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_cadastrar"
-        android:text="@string/btn_cadastrar"
-        android:background="@drawable/login_button"
-        android:layout_marginTop="150dp"
-        style="@style/botaoPadrao"
-        />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tb_cadastro_email"
+            android:hint="@string/tb_cadastro_email"
+            android:inputType="textEmailAddress"
+            android:layout_marginTop="12dp"
+            style="@style/EditTextPadrao"
+            />
 
-</LinearLayout>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tb_cadastro_password"
+            android:hint="@string/tb_cadastro_senha"
+            android:inputType="textPassword"
+            android:layout_marginTop="12dp"
+            style="@style/EditTextPadrao"/>
+
+        <Button
+            android:layout_gravity="center_horizontal|bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_cadastrar"
+            android:text="@string/btn_cadastrar"
+            android:background="@drawable/login_button"
+            android:layout_marginTop="150dp"
+            style="@style/botaoPadrao"
+            />
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

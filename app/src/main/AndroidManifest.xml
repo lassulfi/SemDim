@@ -30,7 +30,8 @@
             android:name=".activity.CadastroGrupoActivity"
             android:parentActivityName=".activity.MainActivity" />
         <activity android:name=".activity.ConversaGrupoActivity" />
-        <activity android:name=".activity.ConversaIndividualActivity" />
+        <activity android:name=".activity.ConversaIndividualActivity"
+            android:parentActivityName=".activity.MainActivity"/>
         <activity android:name=".activity.EstabelecimentoActivity"
             android:parentActivityName=".activity.MainActivity"/>
         <!-- Google Maps API Key -->

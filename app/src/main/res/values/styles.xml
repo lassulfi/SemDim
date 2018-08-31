@@ -8,6 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textColor">@color/primaryTextColor</item>
         <item name="android:windowBackground">@android:color/white</item>
+        <item name="android:background">@android:color/white</item>
     </style>
 
     <style name="botaoPadrao" parent="Theme.AppCompat.Light">
@@ -19,10 +20,10 @@
     </style>
 
     <style name="EditTextPadrao" parent="Theme.AppCompat.Light">
-        <item name="android:textColorHint">@color/grayColor</item>
+        <item name="android:textColorHint">@android:color/white</item>
         <item name="colorControlNormal">@color/colorPrimaryDark</item>
         <item name="colorControlActivated">@color/colorPrimaryLight</item>
-        <item name="android:backgroundTint">@color/primaryTextColor</item>
+        <item name="android:backgroundTint">@android:color/white</item>
         <item name="android:textSize">18dp</item>
     </style>
 

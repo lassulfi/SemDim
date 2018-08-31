@@ -25,12 +25,14 @@
             android:id="@+id/nome_contato_textview"
             android:textSize="18dp"
             android:text="@string/nome_contato_tv"
+            android:textColor="@android:color/black"
             android:paddingBottom="4dp"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/valor_contato_textview"
+            android:textColor="@android:color/black"
             android:text="@string/valor_contato_tv"/>
 
     </LinearLayout>

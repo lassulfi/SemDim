@@ -24,6 +24,7 @@
             android:id="@+id/nome_promocao_textview"
             android:textSize="16dp"
             android:layout_marginBottom="2dp"
+            android:textColor="@android:color/black"
             android:text="@string/nome_promocao_textiview"
             />
 
@@ -32,6 +33,7 @@
             android:layout_height="match_parent"
             android:textSize="12dp"
             android:layout_marginBottom="2dp"
+            android:textColor="@android:color/black"
             android:id="@+id/descricao_promocao_textview"
             android:text="@string/descricao_promocao_textview"/>
 
@@ -39,6 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textSize="14dp"
+            android:textColor="@android:color/black"
             android:id="@+id/valor_promocao_textview"
             android:text="@string/preco_promocao_textview"/>
 
