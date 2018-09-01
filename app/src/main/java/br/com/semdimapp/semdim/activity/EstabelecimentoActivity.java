@@ -57,6 +57,9 @@ public class EstabelecimentoActivity extends AppCompatActivity implements OnMapR
         toolbar.setTitle(estabelecimento.getNome());
         setSupportActionBar(toolbar);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         //Recupera os elementos de tela
         nomeEstabecimentoTextView = (TextView) findViewById(R.id.nome_estabelecimento_textview);
         enderecoEstabelecimentoTextView = (TextView) findViewById(R.id.endereco_estabelecimento_textview);
@@ -90,6 +93,12 @@ public class EstabelecimentoActivity extends AppCompatActivity implements OnMapR
 
         promocoesListView.setAdapter(adapter);
 
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 
     @Override

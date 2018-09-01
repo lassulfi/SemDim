@@ -20,7 +20,7 @@
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Mesangem"
+            android:hint="Mensagem"
             android:textColor="@android:color/black"
             android:textColorHint="@android:color/black"
             android:id="@+id/mensagem_edittext"
@@ -34,6 +34,14 @@
             android:theme="@style/botaoPadrao"/>
 
     </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar_conversa_grupo"
+        android:layout_above="@id/mensagem_grupo_linearlayout"
+        android:src="@drawable/chat_wallpaper"
+        android:scaleType="centerCrop"/>
 
     <ListView
         android:layout_width="match_parent"

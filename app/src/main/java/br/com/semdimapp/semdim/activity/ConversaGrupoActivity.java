@@ -45,6 +45,20 @@ public class ConversaGrupoActivity extends AppCompatActivity {
 
         Bundle extra = getIntent().getExtras();
 
+        String nomeGrupo = extra.getString("NOME_DO_GRUPO");
 
+        //Configuração da Toolbar
+        toolbar.setTitle(nomeGrupo);
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }

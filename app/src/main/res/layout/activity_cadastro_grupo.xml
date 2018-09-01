@@ -5,9 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activity.CadastroGrupoActivity">
+    tools:context=".activity.CadastroGrupoActivity"
+    android:background="@android:color/white">
 
-    <include android:id="@+id/toolbar"
+    <include android:id="@+id/toolbar_cadastro_grupo"
         layout="@layout/toolbar"/>
     
     <LinearLayout
@@ -22,7 +23,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/group_name_edittext"
             android:hint="@string/nome_grupo_edittext_hint"
-            style="@style/EditTextPadrao"/>
+            style="@style/EditTextTelaBranca"/>
 
         <Button
             android:layout_width="0dp"
@@ -44,7 +45,8 @@
     <ListView
         android:id="@+id/grupos_contatos_listview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:listSelector="@color/colorPrimaryLight">
     </ListView>
 
     <TextView
@@ -52,6 +54,6 @@
         android:layout_height="match_parent"
         android:id="@+id/contatos_empty_view"
         android:text="@string/contato_empty_listview"
-        android:textColor="@color/primaryTextColor"/>
+        android:textColor="@android:color/black"/>
 
 </LinearLayout>

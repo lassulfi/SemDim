@@ -79,9 +79,12 @@ public class CadastroGrupoActivity extends AppCompatActivity {
         contatosSelecionados = new ArrayList<>();
 
         //Configuração da toolbar
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar_cadastro_grupo);
         toolbar.setTitle(R.string.cadastrogrupoactivity_title);
         setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //Recupera as textviews
         nomeGrupoTextView = (EditText) findViewById(R.id.group_name_edittext);
@@ -106,6 +109,10 @@ public class CadastroGrupoActivity extends AppCompatActivity {
                 Contato contatoSelecionacionado = contatos.get(position);
 
                 contatosSelecionados.add(contatoSelecionacionado);
+
+                ToastHelper.showToast(getApplication(),
+                        mToast, "Contato adicionado", Toast.LENGTH_SHORT);
+
             }
         });
 
@@ -166,6 +173,13 @@ public class CadastroGrupoActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+
+
+    @Override
     protected void onStart() {
         super.onStart();
         usuarioDatabaseReference.addListenerForSingleValueEvent(usuarioEventListener);
@@ -174,8 +188,13 @@ public class CadastroGrupoActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        usuarioDatabaseReference.removeEventListener(usuarioEventListener);
-        grupoDatabaseReference.removeEventListener(grupoValueEventListener);
+        if (usuarioDatabaseReference != null){
+            usuarioDatabaseReference.removeEventListener(usuarioEventListener);
+        }
+
+        if(grupoDatabaseReference != null){
+            grupoDatabaseReference.removeEventListener(grupoValueEventListener);
+        }
     }
 
     /**
